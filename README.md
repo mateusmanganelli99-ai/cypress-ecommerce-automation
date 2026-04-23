@@ -25,3 +25,4 @@ Validar o fluxo completo de e-commerce:
 ### Instalar dependências
 ```bash
 npm install
+npx cypress open
