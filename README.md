@@ -1,4 +1,4 @@
-![CI](https://github.com/https://github.com/mateusmanganelli99-ai/cypress-ecommerce-automation/actions/workflows/cypress.yml/badge.svg)
+[![CI](https://github.com/https://github.com/mateusmanganelli99-ai/cypress-ecommerce-automation/actions/workflows/cypress.yml/badge.svg)
 # 🚀 Cypress E2E Automation - E-commerce
 
 Projeto de automação de testes End-to-End utilizando Cypress no site Automation Exercise.
