@@ -7,3 +7,9 @@ module.exports = defineConfig({
   },
   retries: 2
 });
+
+module.exports = {
+  e2e: {
+    video: true
+  }
+}
