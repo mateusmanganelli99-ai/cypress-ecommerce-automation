@@ -44,7 +44,7 @@ jobs:
 
       # 🔥 roda só testes críticos
       - name: Run Smoke Tests
-        run: npx cypress run --spec "cypress/e2e/smoke/**/*"
+        run: npx cypress run --spec "cypress/e2e/smoke/login.cy.js"
 
   # 🔹 3. TESTES COMPLETOS (PARALELO)
   e2e-tests:
