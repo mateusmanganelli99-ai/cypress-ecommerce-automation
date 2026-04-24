@@ -1,56 +1,104 @@
-name: Cypress Tests
+name: QA Enterprise Pipeline
 
 on:
+  pull_request:
+    branches: [ main ]
+
   push:
     branches: [ main ]
 
 jobs:
-  cypress-run:
+
+  # 🔹 1. BUILD / SETUP
+  build:
+    name: Build & Install
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        spec:
-          # API
-          - cypress/e2e/api/cadastro-api.cy.js
-          - cypress/e2e/api/compra-api.cy.js
-          - cypress/e2e/api/login-api.cy.js
-          #autenticação
-          - cypress/e2e/auth/login-api.cy.js
-          - cypress/e2e/auth/login.cy.js
-          - cypress/e2e/auth/signup-api.cy.js
-          #e-commerce
-          - cypress/e2e/ecommerce/compra-avancada.cy.js   
-          - cypress/e2e/ecommerce/compra.cy.js
-          - cypress/e2e/ecommerce/compra-avancada-com-mock.cy.js 
-          #Fluxo completo
-          - cypress/e2e/fluxo-completo.cy.js
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
 
-      - name: Cache node_modules
-        uses: actions/cache@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
 
-      - name: Rodar Cypress
-        uses: cypress-io/github-action@v6
+      - name: Instalar dependências
+        run: npm ci
+
+  # 🔹 2. TESTES RÁPIDOS (SMOKE)
+  smoke-tests:
+    name: Smoke Tests
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          spec: ${{ matrix.spec }}
+          node-version: 20
 
+      - run: npm ci
+
+      # 🔥 roda só testes críticos
+      - name: Run Smoke Tests
+        run: npx cypress run --spec "cypress/e2e/smoke/**/*"
+
+  # 🔹 3. TESTES COMPLETOS (PARALELO)
+  e2e-tests:
+    name: E2E Tests (Parallel)
+    runs-on: ubuntu-latest
+    needs: smoke-tests
+
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2]  # paralelismo
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      # 🔥 roda todos testes
+      - name: Run Cypress Tests
+        run: npx cypress run
+
+      # 🔥 salva evidências
       - name: Upload vídeos
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: videos
+          name: videos-${{ matrix.containers }}
           path: cypress/videos
 
-      - name: Upload reports
-        if: always()
+      - name: Upload screenshots
         uses: actions/upload-artifact@v4
         with:
-          name: reports
-          path: cypress/reports
+          name: screenshots-${{ matrix.containers }}
+          path: cypress/screenshots
+
+  # 🔹 4. RELATÓRIO (MOCHAWESOME)
+  report:
+    name: Generate Report
+    runs-on: ubuntu-latest
+    needs: e2e-tests
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: npm ci
+
+      - name: Gerar relatório
+        run: npm run report
+
+      - name: Upload relatório
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: report.html
