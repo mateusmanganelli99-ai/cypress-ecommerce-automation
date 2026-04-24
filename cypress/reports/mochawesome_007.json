@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-04-24T19:22:45.149Z",
+    "end": "2026-04-24T19:23:01.102Z",
+    "duration": 15953,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "6f9b11d1-193a-4a7f-92b8-05a6e2349dad",
+      "title": "",
+      "fullFile": "cypress\\e2e\\Fluxo\\fluxo-completo.cy.js",
+      "file": "cypress\\e2e\\Fluxo\\fluxo-completo.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "46b92ff5-0d7e-4acb-87aa-a09ecb1f8d08",
+          "title": "Fluxo E2E + API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve executar fluxo completo",
+              "fullTitle": "Fluxo E2E + API Deve executar fluxo completo",
+              "timedOut": null,
+              "duration": 15902,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('user').then(user => {\n  const email = `user${Date.now()}@test.com`;\n  // 🔥 1. CRIAR USUÁRIO VIA API\n  cy.criarUsuarioAPI(email, user.password).then(res => {\n    expect(res.status).to.eq(200);\n  });\n  // 🔥 2. LOGIN UI\n  cy.loginUI(email, user.password);\n  cy.contains('Logged in as', {\n    timeout: 10000\n  });\n  // 🔥 3. IR PARA PRODUTOS\n  cy.visit('/products');\n  // 🔥 4. ADICIONAR AO CARRINHO\n  cy.get('.product-image-wrapper').first().contains('Add to cart').click();\n  cy.contains('View Cart').click();\n  // 🔥 5. VALIDAR CARRINHO\n  cy.contains('Shopping Cart');\n  // 🔥 6. CHECKOUT\n  cy.contains('Proceed To Checkout').click();\n  cy.contains('Address Details', {\n    timeout: 10000\n  });\n  // 🔥 7. FINALIZAR\n  cy.get('textarea[name=\"message\"]').type('Compra teste QA');\n  cy.contains('Place Order').click();\n  // 🔥 8. PAGAMENTO\n  cy.get('[data-qa=\"name-on-card\"]').type('Mateus QA');\n  cy.get('[data-qa=\"card-number\"]').type('4111111111111111');\n  cy.get('[data-qa=\"cvc\"]').type('123');\n  cy.get('[data-qa=\"expiry-month\"]').type('12');\n  cy.get('[data-qa=\"expiry-year\"]').type('2030');\n  cy.get('[data-qa=\"pay-button\"]').click();\n  // 🔥 9. VALIDAÇÃO FINAL UI\n  cy.contains('Order Placed', {\n    timeout: 10000\n  });\n  // 🔥 10. VALIDAÇÃO VIA API\n  cy.request({\n    method: 'POST',\n    url: 'https://automationexercise.com/api/getUserDetailByEmail',\n    form: true,\n    body: {\n      email\n    }\n  }).then(res => {\n    expect(res.status).to.eq(200);\n    // API retorna texto, não objeto\n    expect(res.body).to.include(user.expectedMessage);\n  });\n});",
+              "err": {
+                "message": "AssertionError: expected '{\"responseCode\": 405, \"message\": \"This request method is not supported.\"}' to include 'User exists'",
+                "estack": "AssertionError: expected '{\"responseCode\": 405, \"message\": \"This request method is not supported.\"}' to include 'User exists'\n    at Context.eval (webpack://projeto-qa-login/./cypress/e2e/Fluxo/fluxo-completo.cy.js:67:28)\n    at getRet (https://automationexercise.com/__cypress/runner/cypress_runner.js:122799:20)\n    at tryCatcher (https://automationexercise.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://automationexercise.com/__cypress/runner/cypress_runner.js:4285:29)\n    at Context.thenFn (https://automationexercise.com/__cypress/runner/cypress_runner.js:122810:66)\n    at Context.then (https://automationexercise.com/__cypress/runner/cypress_runner.js:123061:21)",
+                "diff": null
+              },
+              "uuid": "0e995f44-9da0-4fd9-b04e-bf80ba52648f",
+              "parentUUID": "46b92ff5-0d7e-4acb-87aa-a09ecb1f8d08",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "0e995f44-9da0-4fd9-b04e-bf80ba52648f"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 15902,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-24T19:23:02.602Z",
+    "end": "2026-04-24T19:23:05.360Z",
+    "duration": 2758,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dd71be3b-a2d1-4ae3-b629-1d8e74e53895",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ecommerce\\compra-avancada-com-mock.cy.js",
+      "file": "cypress\\e2e\\ecommerce\\compra-avancada-com-mock.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6c102f98-2559-4867-81c5-b445da0c617c",
+          "title": "Compra com mock",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve simular chamada externa",
+              "fullTitle": "Compra com mock Deve simular chamada externa",
+              "timedOut": null,
+              "duration": 2608,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// 🔥 1. INTERCEPT (ANTES DO VISIT)\ncy.intercept('GET', '**/getconfig/**').as('getConfig');\n// 🔥 2. ACESSA O SITE\ncy.visit('https://automationexercise.com/');\n// 🔥 3. ESPERA A REQUISIÇÃO REAL\ncy.wait('@getConfig');\n// 🔥 4. VALIDA\ncy.contains('Home');",
+              "err": {},
+              "uuid": "3116a5e8-c918-4d13-96f2-1e809a79c791",
+              "parentUUID": "6c102f98-2559-4867-81c5-b445da0c617c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3116a5e8-c918-4d13-96f2-1e809a79c791"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2608,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

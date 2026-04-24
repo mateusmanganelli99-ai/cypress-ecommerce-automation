@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-24T18:43:37.198Z",
+    "end": "2026-04-24T18:43:57.858Z",
+    "duration": 20660,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "15172765-4481-4945-befd-b07333f7569a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ecommerce\\compra-avancada.cy.js",
+      "file": "cypress\\e2e\\ecommerce\\compra-avancada.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3945efd2-2f76-43b5-b78e-cb086e619e83",
+          "title": "Fluxo completo de compra",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve validar toda a jornada de compra",
+              "fullTitle": "Fluxo completo de compra Deve validar toda a jornada de compra",
+              "timedOut": null,
+              "duration": 20480,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// 🔥 DADOS DINÂMICOS\nconst email = `mateus${Date.now()}${Math.floor(Math.random() * 1000)}@test.com`;\nconst password = '123456';\ncy.log('EMAIL USADO: ' + email);\n// 🔹 ACESSAR LOGIN\ncy.visit('https://automationexercise.com/login');\n// 🔹 SIGNUP\ncy.get('[data-qa=\"signup-name\"]').type('Mateus QA');\ncy.get('[data-qa=\"signup-email\"]').type(email);\ncy.get('[data-qa=\"signup-button\"]').click();\n// 🔹 VALIDAR TELA\ncy.contains('Enter Account Information', {\n  timeout: 10000\n});\n// 🔹 PREENCHER FORM\ncy.get('#password').type(password);\ncy.get('#days').select('1');\ncy.get('#months').select('1');\ncy.get('#years').select('2000');\ncy.get('#first_name').type('Mateus');\ncy.get('#last_name').type('QA');\ncy.get('#address1').type('Rua Teste');\ncy.get('#country').select('India');\ncy.get('#state').type('SP');\ncy.get('#city').type('Sao Paulo');\ncy.get('#zipcode').type('12345');\ncy.get('#mobile_number').type('11999999999');\n// 🔹 CRIAR CONTA\ncy.get('[data-qa=\"create-account\"]').click();\ncy.contains('Account Created!', {\n  timeout: 10000\n});\ncy.get('[data-qa=\"continue-button\"]').click();\n// 🔥 VALIDAR LOGIN\ncy.contains('Logged in as', {\n  timeout: 10000\n});\n// 🔹 IR PARA PRODUTOS\ncy.contains('Products').click();\n// 🔥 CAPTURAR NOME E PREÇO (CORRIGIDO)\ncy.get('.productinfo p').first().should('be.visible').invoke('text').as('productName');\ncy.get('.productinfo h2').first().should('be.visible').invoke('text').as('productPrice');\n// 🔹 ADICIONAR AO CARRINHO\ncy.get('.product-image-wrapper').first().trigger('mouseover');\ncy.contains('Add to cart').click();\n// 🔹 IR PARA CARRINHO\ncy.contains('View Cart').click();\n// 🔥 VALIDAR PRODUTO NO CARRINHO\ncy.get('@productName').then(name => {\n  cy.contains(name);\n});\ncy.get('@productPrice').then(price => {\n  cy.contains(price);\n});\n// 🔹 CHECKOUT\ncy.contains('Proceed To Checkout').click();\n// 🔥 VALIDAR CHECKOUT\ncy.contains('Address Details', {\n  timeout: 10000\n});\n// 🔹 COMENTÁRIO\ncy.get('textarea[name=\"message\"]').type('Compra automatizada Cypress');\n// 🔹 FINALIZAR PEDIDO\ncy.contains('Place Order').click();\n// 🔹 PAGAMENTO FAKE\ncy.get('[data-qa=\"name-on-card\"]').type('Mateus QA');\ncy.get('[data-qa=\"card-number\"]').type('4111111111111111');\ncy.get('[data-qa=\"cvc\"]').type('123');\ncy.get('[data-qa=\"expiry-month\"]').type('12');\ncy.get('[data-qa=\"expiry-year\"]').type('2028');\ncy.get('[data-qa=\"pay-button\"]').click();\n// 🔥 VALIDAÇÃO FINAL\ncy.contains('Order Placed!', {\n  timeout: 10000\n});",
+              "err": {},
+              "uuid": "f9977bfe-88ab-4cda-97ad-610bc07794b8",
+              "parentUUID": "3945efd2-2f76-43b5-b78e-cb086e619e83",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f9977bfe-88ab-4cda-97ad-610bc07794b8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 20480,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

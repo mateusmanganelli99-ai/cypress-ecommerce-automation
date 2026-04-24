@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-24T18:42:59.476Z",
+    "end": "2026-04-24T18:43:06.521Z",
+    "duration": 7045,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2b54dea4-e535-466e-8079-c662d6349ee1",
+      "title": "",
+      "fullFile": "cypress\\e2e\\auth\\login-api.cy.js",
+      "file": "cypress\\e2e\\auth\\login-api.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "23ffb123-fce5-4a60-9e73-8bb685f245bc",
+          "title": "Login com usuário via API",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve logar com usuário criado pela API",
+              "fullTitle": "Login com usuário via API Deve logar com usuário criado pela API",
+              "timedOut": null,
+              "duration": 7003,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = `user${Date.now()}@test.com`;\nconst password = '123456';\n// 🔥 PASSO 3 (AQUI!)\ncy.criarUsuarioAPI(email, password);\n// 🔹 Login via UI\ncy.visit('/login');\ncy.get('[data-qa=\"login-email\"]').type(email);\ncy.get('[data-qa=\"login-password\"]').type(password);\ncy.get('[data-qa=\"login-button\"]').click();\n// 🔹 Validação\ncy.contains('Logged in as');",
+              "err": {},
+              "uuid": "d3577a0b-d08d-4ee7-9018-9affca9282d7",
+              "parentUUID": "23ffb123-fce5-4a60-9e73-8bb685f245bc",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d3577a0b-d08d-4ee7-9018-9affca9282d7"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7003,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,9 +1,14 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress')
 
-module.exports = {
+module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://automationexercise.com',
-    video: true,
-    screenshotOnRunFailure: true
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/reports',
+      overwrite: false,
+      html: true,
+      json: true
+    }
   }
-}
+})

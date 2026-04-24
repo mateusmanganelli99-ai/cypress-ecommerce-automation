@@ -1,0 +1,105 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-24T18:43:59.740Z",
+    "end": "2026-04-24T18:44:14.891Z",
+    "duration": 15151,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7214d2f1-aa25-4301-ba4f-69c62970f74f",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ecommerce\\compra.cy.js",
+      "file": "cypress\\e2e\\ecommerce\\compra.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d35d3f17-68cb-4432-adbf-cc137b21a3b2",
+          "title": "Fluxo de compra completo",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve comprar com usuário logado",
+              "fullTitle": "Fluxo de compra completo Deve comprar com usuário logado",
+              "timedOut": null,
+              "duration": 15045,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = `mateus${Date.now()}${Math.random()}@test.com`;\nconst password = '123456';\n// 🔹 SIGNUP + LOGIN (garante usuário válido)\ncy.visit('https://automationexercise.com/login');\ncy.get('[data-qa=\"signup-name\"]').type('Mateus QA');\ncy.get('[data-qa=\"signup-email\"]').type(email);\ncy.get('[data-qa=\"signup-button\"]').click();\ncy.contains('Enter Account Information', {\n  timeout: 10000\n});\ncy.get('#password').type(password);\ncy.get('#days').select('1');\ncy.get('#months').select('1');\ncy.get('#years').select('2000');\ncy.get('#first_name').type('Mateus');\ncy.get('#last_name').type('QA');\ncy.get('#address1').type('Rua Teste');\ncy.get('#country').select('India');\ncy.get('#state').type('SP');\ncy.get('#city').type('Sao Paulo');\ncy.get('#zipcode').type('12345');\ncy.get('#mobile_number').type('11999999999');\ncy.get('[data-qa=\"create-account\"]').click();\ncy.contains('Account Created!');\ncy.get('[data-qa=\"continue-button\"]').click();\n// 🔥 VALIDA LOGIN (ESSENCIAL)\ncy.contains('Logged in as', {\n  timeout: 10000\n});\n// 🔹 PRODUTOS\ncy.contains('Products').click();\ncy.get('.product-image-wrapper').first().trigger('mouseover');\ncy.contains('Add to cart').click();\ncy.contains('View Cart').click();\n// 🔹 CHECKOUT\ncy.contains('Proceed To Checkout').click();\n// 🔥 AGORA SIM VAI PASSAR\ncy.contains('Address Details', {\n  timeout: 10000\n});",
+              "err": {},
+              "uuid": "e94d5bd7-8ac7-4d8f-84ff-c7620a809800",
+              "parentUUID": "d35d3f17-68cb-4432-adbf-cc137b21a3b2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e94d5bd7-8ac7-4d8f-84ff-c7620a809800"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 15045,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

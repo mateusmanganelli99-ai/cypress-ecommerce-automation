@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-04-24T18:43:28.650Z",
+    "end": "2026-04-24T18:43:35.791Z",
+    "duration": 7141,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "1dbbc6b4-f3b1-4d61-8a82-7ccf0b4c5236",
+      "title": "",
+      "fullFile": "cypress\\e2e\\ecommerce\\compra-avancada-com-mock.cy.js",
+      "file": "cypress\\e2e\\ecommerce\\compra-avancada-com-mock.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ccd0fa81-8291-4dd9-be9e-ac881ab2f6c9",
+          "title": "Compra com mock",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve adicionar produto com API mockada",
+              "fullTitle": "Compra com mock Deve adicionar produto com API mockada",
+              "timedOut": null,
+              "duration": 7095,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.intercept('GET', '/products', {\n  statusCode: 200,\n  body: {\n    products: [{\n      name: 'Camiseta Teste',\n      price: 'R$ 100'\n    }]\n  }\n}).as('getProducts');\ncy.visit('/');\ncy.wait('@getProducts');\ncy.contains('Camiseta Teste');",
+              "err": {
+                "message": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `getProducts`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `getProducts`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://automationexercise.com/__cypress/runner/cypress_runner.js:78379:18)\n    at Object.errByPath (https://automationexercise.com/__cypress/runner/cypress_runner.js:78437:10)\n    at checkForXhr (https://automationexercise.com/__cypress/runner/cypress_runner.js:138940:84)\n    at <unknown> (https://automationexercise.com/__cypress/runner/cypress_runner.js:138965:28)\n    at tryCatcher (https://automationexercise.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://automationexercise.com/__cypress/runner/cypress_runner.js:4285:29)\n    at whenStable (https://automationexercise.com/__cypress/runner/cypress_runner.js:152052:70)\n    at <unknown> (https://automationexercise.com/__cypress/runner/cypress_runner.js:151967:14)\n    at tryCatcher (https://automationexercise.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://automationexercise.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://automationexercise.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://automationexercise.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://automationexercise.com/__cypress/runner/cypress_runner.js:1671:18)\n    at Promise._fulfill (https://automationexercise.com/__cypress/runner/cypress_runner.js:1615:18)\n    at <unknown> (https://automationexercise.com/__cypress/runner/cypress_runner.js:5420:46)\nFrom Your Spec Code:\n    at Context.eval (webpack://projeto-qa-login/./cypress/e2e/ecommerce/compra-avancada-com-mock.cy.js:16:7)",
+                "diff": null
+              },
+              "uuid": "e8ed58d9-753e-4f2a-a3c0-7e45c8195329",
+              "parentUUID": "ccd0fa81-8291-4dd9-be9e-ac881ab2f6c9",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "e8ed58d9-753e-4f2a-a3c0-7e45c8195329"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 7095,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

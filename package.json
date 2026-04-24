@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1" 
+    "test": "cypress run",
+    "report": "mochawesome-merge cypress/reports/*.json > report.json && marge report.json"
   },
   "keywords": [],
   "author": "",
@@ -22,4 +23,3 @@
     "mysql2": "^3.22.2"
   }
 }
-
