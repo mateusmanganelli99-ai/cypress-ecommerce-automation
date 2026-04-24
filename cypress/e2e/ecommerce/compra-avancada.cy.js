@@ -24,7 +24,6 @@ describe('Fluxo completo de compra', () => {
     cy.get('#days').select('1')
     cy.get('#months').select('1')
     cy.get('#years').select('2000')
-
     cy.get('#first_name').type('Mateus')
     cy.get('#last_name').type('QA')
     cy.get('#address1').type('Rua Teste')
