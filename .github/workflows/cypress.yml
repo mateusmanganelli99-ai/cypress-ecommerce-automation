@@ -8,9 +8,24 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        spec:
+          - cypress/e2e/api/login-api.cy.js
+          - cypress/e2e/auth/login-api.cy.js
+          - cypress/e2e/ecommerce/compra-avancada.cy.js
+
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
 
-      - name: Rodar Cypress
+      - name: Rodar Cypress por spec
         uses: cypress-io/github-action@v6
+        with:
+          spec: ${{ matrix.spec }}
+
+          - name: Upload vídeos
+  uses: actions/upload-artifact@v4
+  with:
+    name: cypress-videos
+    path: cypress/videos
