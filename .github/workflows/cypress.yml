@@ -19,13 +19,14 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
-      - name: Rodar Cypress por spec
+      - name: Rodar Cypress
         uses: cypress-io/github-action@v6
         with:
           spec: ${{ matrix.spec }}
 
-          - name: Upload vídeos
-  uses: actions/upload-artifact@v4
-  with:
-    name: cypress-videos
-    path: cypress/videos
+      - name: Upload vídeos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
