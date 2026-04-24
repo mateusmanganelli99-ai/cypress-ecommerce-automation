@@ -12,10 +12,20 @@ jobs:
       fail-fast: false
       matrix:
         spec:
+          # API
+          - cypress/e2e/api/cadastro-api.cy.js
+          - cypress/e2e/api/compra-api.cy.js
           - cypress/e2e/api/login-api.cy.js
+          #autenticação
           - cypress/e2e/auth/login-api.cy.js
-          - cypress/e2e/ecommerce/compra-avancada.cy.js
-
+          - cypress/e2e/auth/login.cy.js
+          - cypress/e2e/auth/signup-api.cy.js
+          #e-commerce
+          - cypress/e2e/ecommerce/compra-avancada.cy.js   
+          - cypress/e2e/ecommerce/compra.cy.js
+          - cypress/e2e/ecommerce/compra-avancada-com-mock.cy.js 
+          #Fluxo completo
+          - cypress/e2e/fluxo-completo.cy.js
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
